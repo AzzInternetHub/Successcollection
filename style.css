@@ -1,0 +1,711 @@
+/* ==========================================================================
+   SUCCESS COLLECTION ONLINE - LUXURY RESPONSIVE INTERFACE ARCHITECTURE
+   ========================================================================== */
+
+:root {
+    --bg-primary: #0B0A0A;
+    --bg-surface: #141211;
+    --bg-elevated: #1D1A19;
+    --accent-gold: #D4AF37;
+    --accent-gold-bright: #F5CD5E;
+    --text-primary: #F5EFE7;
+    --text-muted: #A6A097;
+    --border-subtle: rgba(212, 175, 55, 0.12);
+    --border-active: rgba(212, 175, 55, 0.45);
+    --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Document Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* Clean mobile interaction click frames */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    padding-top: 85px; /* Safely accommodates fixed global nav height */
+}
+
+/* Premium Radial Glow & Grid Mesh Textures */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 15%, rgba(212, 175, 55, 0.04) 0%, rgba(11, 10, 10, 0) 75%);
+    pointer-events: none;
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(rgba(255, 215, 0, 0.01) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255, 215, 0, 0.01) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 16px; /* Optimized pocket safety margins for mobile devices */
+}
+
+/* Fixed Glass Navigation Engine */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: rgba(11, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    z-index: 100;
+}
+
+.logo h1 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #FFF6E5, var(--accent-gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.logo p {
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    margin-top: 1px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    transition: var(--transition-smooth);
+}
+
+.admin-toggle-btn:hover {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    background: rgba(212, 175, 55, 0.06);
+    padding: 10px 16px;
+    border-radius: 30px;
+    border: 1px solid var(--border-subtle);
+    font-size: 1.05rem;
+    transition: var(--transition-smooth);
+}
+
+.cart-icon:hover {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    border-color: var(--accent-gold);
+}
+
+.cart-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: var(--accent-gold-bright);
+    color: var(--bg-primary);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 20px;
+}
+
+/* Immersive Banner Hero Framework */
+.hero {
+    position: relative;
+    margin-top: 12px;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 30vh;
+    min-height: 220px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay-text {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(11,10,10,0.95) 20%, rgba(11,10,10,0.1) 80%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.hero-overlay-text h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.hero-overlay-text p {
+    color: var(--text-muted);
+    margin-top: 4px;
+    font-size: 0.9rem;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 40px 0 25px;
+    color: var(--text-primary);
+}
+
+/* Highly Flexible Fluid 2-Column Mobile Catalog Layout Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Enforces exact 2 items side-by-side on compact screens */
+    gap: 14px;
+    margin-bottom: 60px;
+}
+
+.product-card {
+    background: var(--bg-surface);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
+}
+
+.product-card:hover {
+    border-color: var(--border-active);
+    transform: translateY(-4px);
+}
+
+.product-img {
+    width: 100%;
+    aspect-ratio: 1 / 1.15;
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.price-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(11, 10, 10, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    border: 1px solid var(--border-subtle);
+    z-index: 2;
+}
+
+.product-info {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.product-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.add-to-cart {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    border: none;
+    width: 100%;
+    padding: 10px 4px;
+    margin-top: 8px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    transition: var(--transition-smooth);
+}
+
+.add-to-cart:hover {
+    background: var(--accent-gold-bright);
+}
+
+/* Sliding Cart Sidebar Framework */
+.cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+    transition: var(--transition-smooth);
+}
+
+.cart-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%; /* Spans across entire phone viewport natively */
+    max-width: 440px; /* Locks safely down to sleek strip on standard desktop panels */
+    height: 100%;
+    background: #0F0E0E;
+    border-left: 1px solid var(--border-subtle);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    transition: var(--transition-smooth);
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 16px;
+}
+
+.cart-items-list {
+    flex: 1;
+    overflow-y: auto;
+    margin: 15px 0;
+    padding-right: 4px;
+}
+
+/* Custom premium compact scrollbar */
+.cart-items-list::-webkit-scrollbar {
+    width: 4px;
+}
+.cart-items-list::-webkit-scrollbar-thumb {
+    background: var(--accent-gold);
+    border-radius: 4px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.cart-item img {
+    width: 55px;
+    height: 65px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-item-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.cart-item-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cart-item-price {
+    color: var(--accent-gold);
+    margin-top: 2px;
+    font-size: 0.85rem;
+}
+
+.cart-action-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.qty-controls {
+    display: flex;
+    align-items: center;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 15px;
+    padding: 1px;
+}
+
+.qty-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.remove-item-btn {
+    background: transparent;
+    border: none;
+    color: #cc4444;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.cart-footer-summary {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 16px;
+}
+
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.cart-total-row span:last-child {
+    color: var(--accent-gold);
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    border: none;
+    border-radius: 25px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* Adaptive Form & Modal Layers */
+.modal-layer {
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 10, 10, 0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+    padding: 12px;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+}
+
+.modal-layer.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    font-size: 1.25rem;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default mobile single-column stacking standard */
+    gap: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.form-group input, 
+.form-group textarea {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: 12px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+}
+
+.order-summary-box {
+    background: var(--bg-elevated);
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.04);
+}
+
+.order-summary-box h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    padding: 6px 0;
+}
+
+.checkout-total-display {
+    text-align: right;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-top: 10px;
+    color: var(--accent-gold);
+}
+
+.payment-method-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.payment-method-selector h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.pill-design {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    font-size: 0.85rem;
+}
+
+.payment-option-pill input:checked + .pill-design {
+    border-color: var(--accent-gold);
+    background: rgba(212, 175, 55, 0.04);
+}
+
+/* Toast Engine HUD HUD */
+.toast-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px; /* Spans full horizontal bounds cleanly on mobile frames */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    z-index: 2000;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Pure White Modern Business Receipt Styling mapping override */
+.receipt-container-document {
+    background: #FFFFFF;
+    color: #111111 !important;
+    width: 100%;
+    max-width: 460px;
+    border-radius: 16px;
+    padding: 20px;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.receipt-container-document * { color: #111111 !important; }
+.receipt-header-nav { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #111; padding-bottom: 8px; margin-bottom: 15px; }
+.receipt-header-nav span { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; }
+.receipt-actions-row { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
+
+/* Footprints Layouts & Anchor Components */
+.social-strip {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin: 40px 0 20px;
+}
+
+.social-strip a { color: var(--text-muted); font-size: 1.35rem; }
+.contact-strip { display: flex; flex-direction: column; align-items: center; gap: 12px; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.03); padding-top: 20px; }
+.contact-strip i { color: var(--accent-gold); }
+
+footer {
+    text-align: center;
+    padding: 30px 16px;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: 40px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #25D366;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+    z-index: 90;
+    text-decoration: none;
+}
+
+.lightbox-image { max-width: 95%; max-height: 75vh; object-fit: contain; border-radius: 8px; }
+.close-btn.lightbox-variant { position: absolute; top: 20px; right: 25px; color: white; }
+
+/* ==========================================================================
+   DESKTOP RESPONSIVE LAYOUT UPGRADES (Media Query Breakpoints)
+   ========================================================================== */
+@media (min-width: 768px) {
+    body { padding-top: 100px; }
+    .navbar { padding: 20px 40px; }
+    .logo h1 { font-size: 1.6rem; letter-spacing: 2px; }
+    .logo p { font-size: 0.75rem; letter-spacing: 4px; }
+    
+    .hero { height: 45vh; min-height: 350px; margin-top: 20px; }
+    .hero-overlay-text { padding: 40px; }
+    .hero-overlay-text h2 { font-size: 2.5rem; }
+    .hero-overlay-text p { font-size: 1.1rem; }
+    
+    .section-title { font-size: 1.5rem; margin: 60px 0 40px; }
+    
+    /* Expands cleanly into multi-column desktop fashion dynamically */
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 28px; }
+    .product-info { padding: 18px; }
+    .product-title { font-size: 1rem; }
+    .add-to-cart { font-size: 0.85rem; padding: 12px; }
+    
+    .form-grid { grid-template-columns: 1fr 1fr; }
+    .modal-card { padding: 30px; }
+    .toast-notification { left: auto; right: 30px; width: auto; min-width: 300px; }
+    .contact-strip { flex-direction: row; justify-content: center; gap: 30px; }
+}

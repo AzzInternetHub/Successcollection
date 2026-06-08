@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Collection | Luxury Streetwear & Accessories</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo" id="logoTitleContainer">
+            <h1>SUCCESS COLLECTION</h1>
+            <p>Luxury Streetwear & Accessories</p>
+        </div>
+        <div class="nav-actions">
+            <button class="admin-toggle-btn" id="adminPortalTrigger" title="Seller Dashboard"><i class="fas fa-user-gear"></i></button>
+            <div class="cart-icon" id="cartIcon">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <img src="hero.jpg" alt="Success Collection Banner" onerror="this.src='https://placehold.co/1400x600/1a1a1a/gold?text=Success+Collection+Premium+Flyer'">
+            <div class="hero-overlay-text">
+                <h2>THE NEW ERA OF STREETWEAR</h2>
+                <p>Curated Luxury. Drop 2026 Available Globally.</p>
+            </div>
+        </section>
+
+        <section class="catalog-section">
+            <div class="section-title">✦ New New Arrivals ✦</div>
+            <div class="products-grid" id="productsGrid">
+                </div>
+        </section>
+
+        <section class="social-strip">
+            <a href="https://www.facebook.com/share/14YtUP1v4DK" target="_blank" aria-label="Facebook Link"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/lord_lamba25k" target="_blank" aria-label="Instagram Link"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@lordlamba25k" target="_blank" aria-label="TikTok Link"><i class="fab fa-tiktok"></i></a>
+            <a href="https://chat.whatsapp.com/HtXbeNHRYduLJJaslQqy21?mode=gi_t" target="_blank" aria-label="WhatsApp Group Link"><i class="fab fa-whatsapp"></i></a>
+        </section>
+
+        <div class="contact-strip">
+            <span><i class="fas fa-phone"></i> 0540196090 / 0537916475</span>
+            <span><i class="fas fa-map-marker-alt"></i> Yeji (Fante Akura)</span>
+            <span><i class="fas fa-envelope"></i> successcollection67@gmail.com</span>
+        </div>
+    </main>
+
+    <footer>
+        <p>Developed beautifully by <strong>Azz Internet Hub</strong> | Technical Contact: 0598160732</p>
+        <p>&copy; 2026 Success Collection Online. Premium Tier Retail Framework.</p>
+    </footer>
+
+    <a href="#" class="whatsapp-float" id="whatsappFloatBtn" aria-label="Direct Support Chat">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <span><i class="fas fa-shopping-bag"></i> Your Bag</span>
+            <button class="close-btn" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-items-list" id="cartItemsList"></div>
+        <div class="cart-footer-summary">
+            <div class="cart-total-row">
+                <span>Estimated Bag Total:</span>
+                <span id="cartTotal">GHS 0.00</span>
+            </div>
+            <button class="checkout-btn" id="proceedCheckoutBtn"><i class="fas fa-shield-hasp"></i> Proceed to Checkout</button>
+            <p class="security-assurance-tag"><i class="fas fa-circle-check"></i> Secure Checkout | Free Delivery Within Ghana</p>
+        </div>
+    </aside>
+
+    <div class="modal-layer" id="checkoutModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2>Complete Your Order</h2>
+                <button class="close-btn" id="closeCheckoutBtn">&times;</button>
+            </div>
+            <form class="modal-form" id="checkoutForm" onsubmit="event.preventDefault();">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="customerName">Full Name *</label>
+                        <input type="text" id="customerName" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">Email Address *</label>
+                        <input type="email" id="customerEmail" placeholder="johndoe@email.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number *</label>
+                    <input type="tel" id="customerPhone" placeholder="054XXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label for="customerAddress">Delivery Address *</label>
+                    <textarea id="customerAddress" rows="2" placeholder="House Location, Street Name, Town / City" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="orderNotes">Order Notes (Optional)</label>
+                    <textarea id="orderNotes" rows="1" placeholder="Preferred size, color variants, or delivery timing instructions..."></textarea>
+                </div>
+                
+                <div class="order-summary-box">
+                    <h3>Review Bag Breakdown</h3>
+                    <div id="checkoutItemsList"></div>
+                    <div class="checkout-total-display" id="modalTotalSummary">Total: GHS 0.00</div>
+                </div>
+
+                <div class="payment-method-selector">
+                    <h3>Select Secure Settlement Pathway</h3>
+                    <label class="payment-option-pill">
+                        <input type="radio" name="paymentMethod" value="paystack" checked>
+                        <div class="pill-design">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Paystack Gateways (Cards / Mobile Money Accounts)</span>
+                        </div>
+                    </label>
+                    <label class="payment-option-pill">
+                        <input type="radio" name="paymentMethod" value="whatsapp">
+                        <div class="pill-design">
+                            <i class="fab fa-whatsapp"></i>
+                            <span>Pay On Delivery (Instant WhatsApp Automation Order)</span>
+                        </div>
+                    </label>
+                </div>
+                <button type="button" class="action-submit-btn" id="placeOrderBtn">Authorize & Finalize Order</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-layer" id="adminPortalModal">
+        <div class="modal-card admin-variant">
+            <div class="modal-header">
+                <h2><i class="fas fa-sliders"></i> Seller Management Center</h2>
+                <button class="close-btn" id="closeAdminBtn">&times;</button>
+            </div>
+            <div id="adminAuthLockScreen">
+                <div class="form-group">
+                    <label>Enter Master Administrative Token Key</label>
+                    <input type="password" id="adminPasswordInput" placeholder="••••••••">
+                    <button class="action-submit-btn" style="margin-top:15px;" id="verifyAdminTokenBtn">Authenticate Access</button>
+                </div>
+            </div>
+            <div id="adminDashboardView" class="hidden-view">
+                <div class="admin-dashboard-layout">
+                    <h3>Catalog Upload Matrix</h3>
+                    <form id="adminAddProductForm" onsubmit="event.preventDefault();" style="margin-top:15px;">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" id="adminProdName" placeholder="Example: Luxury Vintage Heavyweight Tee" required>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Price (GHS)</label>
+                                <input type="number" step="0.01" id="adminProdPrice" placeholder="450.00" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Unique Item Code ID</label>
+                                <input type="text" id="adminProdId" placeholder="SC-TEE-01" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Primary Image Hosted Link URL</label>
+                            <input type="url" id="adminProdImg" placeholder="https://imgur.com/your-image.jpg" required>
+                        </div>
+                        <button type="button" class="action-submit-btn" id="submitNewProductToSheetBtn">Publish Item Directly to Web Platform</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-layer" id="receiptModal">
+        <div class="receipt-container-document">
+            <div class="receipt-header-nav">
+                <span>Invoice Statement</span>
+                <button class="close-btn" id="closeReceiptBtn" style="color:#000;">&times;</button>
+            </div>
+            <div id="receiptContent">
+                </div>
+            <div class="receipt-actions-row">
+                <button class="btn-receipt download" id="downloadReceiptBtn"><i class="fas fa-file-pdf"></i> Save Document (PDF)</button>
+                <button class="btn-receipt share-wa" id="whatsappReceiptBtn"><i class="fab fa-whatsapp"></i> Dispatch via WhatsApp</button>
+                <button class="btn-receipt standard-close" id="continueShoppingBtn">Return to Grid Store</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-layer" id="imageModal" style="background: rgba(0,0,0,0.95);">
+        <span class="close-btn lightbox-variant">&times;</span>
+        <img id="modalImg" src="" alt="Ultra Resolution Preview Card" class="lightbox-image">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
