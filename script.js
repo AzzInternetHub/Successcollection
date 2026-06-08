@@ -1,5 +1,5 @@
-const APPS_SCRIPT_ENDPOINT = "https://script.google.com/macros/s/AKfycbwW7eN12oTHnGFLwnjxz0TKp_V_D_hdt6kuyDmVrTh0vnLyG0fAByX1FMT5-qrx3wlQ/exec"; 
-const PAYSTACK_PUBLIC_KEY = "pk_live_your_actual_key_here"; // Put your actual Paystack public key here
+const APPS_SCRIPT_ENDPOINT = "https://script.google.com/macros/s/AKfycbwK2hAP8IDlxaiM-YnKs6XYtMFzL7G1oy-iVfoogRwYQpYs2w-BTMy2BUve6q9n8ViV/exec"; 
+const PAYSTACK_PUBLIC_KEY = "pk_live_your_actual_key_here"; 
 
 let productsDB = [];
 let cart = [];
@@ -194,7 +194,6 @@ function initializeOrderProcessing() {
     }
 
     const orderData = {
-        action: "placeOrder",
         orderId: "SC-" + Math.floor(100000 + Math.random() * 900000),
         date: new Date().toLocaleString(),
         customerName: name,
