@@ -1,5 +1,5 @@
 const APPS_SCRIPT_ENDPOINT = "https://script.google.com/macros/s/AKfycbwK2hAP8IDlxaiM-YnKs6XYtMFzL7G1oy-iVfoogRwYQpYs2w-BTMy2BUve6q9n8ViV/exec"; 
-const PAYSTACK_PUBLIC_KEY = "pk_live_your_actual_key_here"; 
+const PAYSTACK_PUBLIC_KEY = "ppk_live_8c56d91cee6884d988dd8355981e0134ab72b94b"; 
 
 let productsDB = [];
 let cart = [];
